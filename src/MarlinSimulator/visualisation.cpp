@@ -446,7 +446,7 @@ void Visualisation::destroy() {
 }
 
 void Visualisation::set_head_position(glm::vec4 sim_pos) {
-  glm::vec4 position = {sim_pos.x, sim_pos.z, -sim_pos.y, sim_pos.w}; // correct for opengl coordinate system
+  glm::vec4 position = { sim_pos.x, sim_pos.z, -sim_pos.y, sim_pos.w }; // correct for opengl coordinate system
   if (position != effector_pos) {
 
     if (glm::length(glm::vec3(position) - glm::vec3(last_extrusion_check)) > 0.5f) { // smooths out extrusion over a minimum length to fill in gaps todo: implement an simulation to do this better
@@ -495,7 +495,6 @@ void Visualisation::set_head_position(glm::vec4 sim_pos) {
 bool Visualisation::points_are_collinear(glm::vec3 a, glm::vec3 b, glm::vec3 c) {
   return glm::length(glm::dot(b - a, c - a) - (glm::length(b - a) * glm::length(c - a))) < 0.0002; // could be increased to further reduce rendered geometry
 }
-
 
 void Visualisation::ui_viewport_callback(UiWindow* window) {
   auto now = clock.now();

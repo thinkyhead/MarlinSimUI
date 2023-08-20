@@ -10,7 +10,7 @@
 
 #include <gl.h>
 #include <imgui.h>
-#include "imgui_internal.h"
+#include <imgui_internal.h>
 #include "../ImGuiFileDialog/ImGuiFileDialog.h"
 
 #include "execution_control.h"
