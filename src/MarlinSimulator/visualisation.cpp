@@ -250,7 +250,7 @@ void Visualisation::update() {
 }
 
 void Visualisation::destroy() {
-  if(framebuffer != nullptr) {
+  if (framebuffer != nullptr) {
     framebuffer->release();
     delete framebuffer;
   }
@@ -463,16 +463,16 @@ void Visualisation::ui_viewport_callback(UiWindow* window) {
     mouse_captured = false;
   }
 
-  if (mouse_captured && !last_mouse_captured) {
+  if (mouse_captured && !last_mouse_captured) {        // Mouse button was just pressed
     ImVec2 mouse_pos = ImGui::GetMousePos();
-    mouse_lock_pos = {mouse_pos.x, mouse_pos.y};
+    mouse_lock_pos = { mouse_pos.x, mouse_pos.y };
     SDL_SetWindowGrab(SDL_GL_GetCurrentWindow(), SDL_TRUE);
     SDL_SetRelativeMouseMode(SDL_TRUE);
-  } else if (!mouse_captured && last_mouse_captured) {
+  } else if (!mouse_captured && last_mouse_captured) { // Mouse button was just released
     SDL_SetRelativeMouseMode(SDL_FALSE);
     SDL_SetWindowGrab(SDL_GL_GetCurrentWindow(), SDL_FALSE);
     SDL_WarpMouseInWindow(SDL_GL_GetCurrentWindow(), mouse_lock_pos.x, mouse_lock_pos.y);
-  } else if (mouse_captured) {
+  } else if (mouse_captured) {                         // Mouse button is being held
     camera.rotation.x -= ImGui::GetIO().MouseDelta.x * 0.2;
     camera.rotation.y -= ImGui::GetIO().MouseDelta.y * 0.2;
     if (camera.rotation.y > 89.0f) camera.rotation.y = 89.0f;
